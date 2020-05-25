@@ -1,0 +1,12 @@
+function counter () {
+  let div = document.createElement('div')
+  div.setAttribute('id', 'counter')
+  div.innerHTML = 1
+  div.onclick = function () {
+    console.log(parseInt(div.innerHTML))
+    div.innerHTML = parseInt(div.innerHTML) + 1
+  }
+  document.body.appendChild(div)
+}
+
+export default counter
