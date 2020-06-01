@@ -2,11 +2,12 @@
 import './css/index.css'
 import './css/index.less'
 import logo from './images/logo.jpg'
+import { add } from './expo.js'
 
+console.log(1, 10)
 const img = new Image()
 img.src = logo
 document.getElementById('root').appendChild(img)
-console.log(1111)
 // import axios from 'axios'
 // console.log(css)
 
