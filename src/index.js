@@ -1,10 +1,12 @@
 
-import './css/index.css'
-import './css/index.less'
+import css from './css/index.css'
+import less from './css/index.less'
 import logo from './images/logo.jpg'
 import { add } from './expo.js'
+import _ from 'lodash'
 
-console.log(1, 10)
+console.log(_.join([1, 2, 3], "********"))
+console.log(add(1, 10))
 const img = new Image()
 img.src = logo
 document.getElementById('root').appendChild(img)
@@ -56,12 +58,12 @@ document.getElementById('root').appendChild(img)
 // })
 
 // preset-react解析react语法，jsx
-// import React, { Component } from 'react'
-// import ReactDom from 'react-dom'
+import React, { Component } from 'react'
+import ReactDom from 'react-dom'
 
-// class App extends Component {
-//   render () {
-//     return <div>hello react</div>
-//   }
-// }
-// ReactDom.render(<App />, document.getElementById('root'))
+class App extends Component {
+  render () {
+    return <div>hello react</div>
+  }
+}
+ReactDom.render(<App />, document.getElementById('root'))
