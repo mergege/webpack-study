@@ -9,11 +9,11 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const PurifyCss = require('purify-css')
-const glob = require("glob-all")
-const HardSourceWebpackPlugin = require("hard-source-webpack-plugin")
+const glob = require('glob-all')
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
 
 // 检测打包时间
-const SpeedMeasureWebpackPlugin = require("speed-measure-webpack-plugin")
+const SpeedMeasureWebpackPlugin = require('speed-measure-webpack-plugin')
 const smp = new SpeedMeasureWebpackPlugin()
 
 const webpack = require('webpack')
@@ -53,11 +53,11 @@ const config = {
   // 查找优化
   resolve: {
     // 查找第三方依赖
-    modules: [path.resolve(__dirname, "./node_modules")],
+    modules: [path.resolve(__dirname, './node_modules')],
     // 起别名
     // 减少查找过程
     alias: {
-      "@": path.resolve(__dirname, './src/css'),
+      '@': path.resolve(__dirname, './src/css')
       // "react": "./node_modules/react/umd/react.production.min.js",
       // "react-dom": "./node_modules/react-dom/umd/react-dom.production.min.js"
     },
@@ -78,14 +78,14 @@ const config = {
     // 即使HMR没生效，浏览器也不要自动刷新
     hotOnly: true,
     proxy: {
-      'api': {
+      api: {
         target: 'http://localhost:9092/'
       }
     },
-    before (app, server) {
+    before(app, server) {
       app.get('/api/mock.json', (req, res) => {
         res.json({
-          'hello': 'express'
+          hello: 'express'
         })
       })
     }
@@ -128,7 +128,7 @@ const config = {
         // use: ["file-loader"]
         // 一般文件资源用url-loader代替,优化，小于limit的图片会被编译成base64
         use: {
-          loader: "url-loader",
+          loader: 'url-loader',
           options: {
             name: 'images/[name].[ext]',
             limit: 5 * 1024
@@ -140,15 +140,15 @@ const config = {
   optimization: {
     usedExports: true, // js摇树
     splitChunks: {
-      chunks: "all",
+      chunks: 'all',
       cacheGroups: {
         lodash: {
           test: /lodash/,
-          name: "lodash"
+          name: 'lodash'
         },
         react: {
           test: /react|react-dom/,
-          name: "react"
+          name: 'react'
         }
       }
     }, // 代码打包分割
@@ -175,7 +175,7 @@ const config = {
     new webpack.HotModuleReplacementPlugin(),
     // 压缩css
     new OptimizeCssAssetsPlugin({
-      cssProcessor: require("cssnano"), // 安装postcss-loader已经依赖下载了
+      cssProcessor: require('cssnano'), // 安装postcss-loader已经依赖下载了
       cssProcessorOptions: {
         discardComments: { removeAll: true }
       }
@@ -191,4 +191,5 @@ const config = {
   ]
 }
 
-module.exports = smp.wrap(config)
+// module.exports = smp.wrap(config)
+module.exports = config
